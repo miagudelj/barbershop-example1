@@ -1,0 +1,80 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = "The Grand Barber | Premium Barbershop Zürich" } = Astro.props;
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="The Grand Barber – Premium Barbershop in Zürich. Klassische Herrenschnitte, Rasuren und Bartpflege in edlem Ambiente." />
+    <meta name="theme-color" content="#0A0A0A" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <!-- Barber Pole Loading Screen -->
+    <div class="loader-screen" id="loader">
+      <div class="barber-pole-loader">
+        <div class="pole-cap pole-cap-top"></div>
+        <div class="pole-stripes"></div>
+        <div class="pole-cap pole-cap-bottom"></div>
+      </div>
+      <div class="loader-text">The Grand Barber</div>
+      <div class="loader-subtext">wird geladen</div>
+    </div>
+
+    <slot />
+
+    <script>
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.getElementById('loader')?.classList.add('hidden');
+          document.body.style.overflow = '';
+        }, 1800);
+      });
+      document.body.style.overflow = 'hidden';
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+      const nav = document.getElementById('main-nav');
+      window.addEventListener('scroll', () => {
+        if (nav) {
+          if (window.scrollY > 80) nav.classList.add('shadow-lg');
+          else nav.classList.remove('shadow-lg');
+        }
+      });
+
+      document.getElementById('menu-toggle')?.addEventListener('click', () => {
+        document.getElementById('mobile-menu')?.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+
+      document.getElementById('menu-close')?.addEventListener('click', () => {
+        document.getElementById('mobile-menu')?.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+
+      document.getElementById('mobile-menu')?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          document.getElementById('mobile-menu')?.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
+    </script>
+  </body>
+</html>
