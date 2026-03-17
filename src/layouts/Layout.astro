@@ -1,36 +1,43 @@
 ---
 import '../styles/global.css';
+import config, { getThemeCssVars } from '../config';
 
 interface Props {
   title?: string;
 }
 
-const { title = "The Grand Barber | Premium Barbershop Zürich" } = Astro.props;
+const { title = `${config.business.name} | ${config.business.tagline}` } = Astro.props;
+const themeCssVars = getThemeCssVars(config.theme);
 ---
 
-<html lang="de">
+<html lang={config.business.locale.split('-')[0]} style={themeCssVars}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="The Grand Barber – Premium Barbershop in Zürich. Klassische Herrenschnitte, Rasuren und Bartpflege in edlem Ambiente." />
-    <meta name="theme-color" content="#0A0A0A" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+    <meta name="description" content={config.business.description} />
+    <meta name="theme-color" content={config.theme.colors.bg} />
+    {config.theme.fonts.googleFontsUrl && (
+      <>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href={config.theme.fonts.googleFontsUrl} rel="stylesheet" />
+      </>
+    )}
     <title>{title}</title>
   </head>
   <body>
-    <!-- Barber Pole Loading Screen -->
-    <div class="loader-screen" id="loader">
-      <div class="barber-pole-loader">
-        <div class="pole-cap pole-cap-top"></div>
-        <div class="pole-stripes"></div>
-        <div class="pole-cap pole-cap-bottom"></div>
+    {config.loader.enabled && (
+      <div class="loader-screen" id="loader">
+        <div class="barber-pole-loader">
+          <div class="pole-cap pole-cap-top"></div>
+          <div class="pole-stripes"></div>
+          <div class="pole-cap pole-cap-bottom"></div>
+        </div>
+        <div class="loader-text">{config.business.name}</div>
+        <div class="loader-subtext">wird geladen</div>
       </div>
-      <div class="loader-text">The Grand Barber</div>
-      <div class="loader-subtext">wird geladen</div>
-    </div>
+    )}
 
     <slot />
 

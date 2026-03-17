@@ -1,0 +1,42 @@
+---
+import config from '../config';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import BookingAssistant from '../components/react/BookingAssistant';
+
+const { sections, services, team, hours } = config;
+const s = sections.booking;
+
+const bookingServices = services.map(svc => ({
+  id: svc.id,
+  name: svc.name,
+  duration: svc.duration,
+  price: svc.price,
+}));
+
+const bookingBarbers = [
+  ...team.map(t => ({ id: t.id, name: t.name.split(' ')[0] })),
+  { id: 'any', name: 'Keine Präferenz' },
+];
+---
+
+<section id="booking" class="py-24 md:py-32 bg-[var(--color-bg-soft)] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <SectionHeader
+      subtitle={s.subtitle}
+      title={s.title}
+      titleHighlight={s.titleHighlight}
+      titlePrefix="Termin"
+      description={s.description}
+    />
+
+    <div class="reveal">
+      <BookingAssistant
+        client:visible
+        services={bookingServices}
+        barbers={bookingBarbers}
+        closedDays={hours.closedDays}
+        closedLabel={hours.closedLabel}
+      />
+    </div>
+  </div>
+</section>

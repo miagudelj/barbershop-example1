@@ -22,3 +22,21 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# vscode
+.vscode/
+
+# claude
+.claude/
+
+# OS files
+Thumbs.db
+Desktop.ini
+
+# editor files
+*.swp
+*.swo
+*~
+
+# built widget bundles (generated via npm run build:widgets)
+public/widgets/*.js

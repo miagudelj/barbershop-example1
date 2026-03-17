@@ -1,0 +1,31 @@
+---
+import config from '../config';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+
+const { gallery, sections } = config;
+const s = sections.gallery;
+---
+
+<section id="gallery" class="py-24 md:py-32 bg-[var(--color-bg-card)] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <SectionHeader
+      subtitle={s.subtitle}
+      title={s.title}
+      titleHighlight={s.titleHighlight}
+      titlePrefix="Die"
+    />
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 stagger-children">
+      {gallery.map((item) => (
+        <div class={`gallery-item relative group reveal ${item.featured ? 'md:row-span-2' : ''}`}>
+          <div class={`w-full ${item.featured ? 'h-full min-h-64 md:min-h-full' : 'aspect-square'} rounded-xl overflow-hidden`}>
+            <img src={item.image} alt={item.title} class="w-full h-full object-cover" loading="lazy"/>
+          </div>
+          <div class="gallery-overlay rounded-xl flex items-end p-5">
+            <span class="text-white font-serif text-lg">{item.title}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

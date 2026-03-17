@@ -1,0 +1,22 @@
+---
+interface Props {
+  icon: string;
+}
+
+const { icon } = Astro.props;
+
+const icons: Record<string, string> = {
+  haircut: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.1 4C5 5.5 5.2 7.5 6.5 8.5c.5.5 1 .8 1.5 1-.5 1.5-1 3-1 4.5 0 3 2 5.5 5 5.5s5-2.5 5-5.5c0-1.5-.5-3-1-4.5.5-.2 1-.5 1.5-1C18.8 7.5 19 5.5 17.9 4"/><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/></svg>`,
+  shave: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3c0 0 0 4 5 4s5-4 5-4"/><path d="M4 17c0 0 2-4 8-4s8 4 8 4"/><line x1="12" y1="7" x2="12" y2="13"/><path d="M8 21h8"/></svg>`,
+  combo: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>`,
+  beard: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  hottowel: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+  deluxe: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="5"/><path d="M3 21c0-4.4 3.6-8 9-8s9 3.6 9 8"/><path d="M15 5l2-3M9 5L7 2"/></svg>`,
+};
+
+const svgHtml = icons[icon] ?? icons.haircut;
+---
+
+<div class="service-icon w-14 h-14 rounded-xl bg-[var(--color-bg-card-alt2)] flex items-center justify-center mb-5 text-[var(--color-primary)]">
+  <Fragment set:html={svgHtml} />
+</div>

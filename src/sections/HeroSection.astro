@@ -1,0 +1,55 @@
+---
+import config from '../config';
+const { hero, contact } = config;
+---
+
+<section class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+  <div class="absolute top-20 right-0 w-72 h-72 bg-[var(--color-primary)]/5 rounded-full blur-3xl parallax-slow"></div>
+  <div class="absolute bottom-20 left-0 w-72 md:w-96 h-72 md:h-96 bg-[var(--color-bg-card-alt2)]/30 rounded-full blur-3xl"></div>
+
+  <div class="gold-particle" style="top: 15%; left: 20%; animation-delay: 0s;"></div>
+  <div class="gold-particle" style="top: 30%; right: 10%; animation-delay: 1s; width: 6px; height: 6px;"></div>
+  <div class="gold-particle" style="top: 60%; left: 10%; animation-delay: 2s;"></div>
+  <div class="gold-particle" style="bottom: 25%; right: 10%; animation-delay: 3s; width: 5px; height: 5px;"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-32 md:py-0 grid md:grid-cols-2 gap-12 items-center relative z-10">
+    <div class="text-center md:text-left">
+      <div class="hero-text-reveal">
+        <span class="section-subtitle block mb-4">{hero.subtitle}</span>
+      </div>
+      <h1 class="hero-text-reveal font-serif text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+        {hero.titleLine1}<br/>
+        <span class="text-[var(--color-primary)] italic">{hero.titleLine2}</span>
+      </h1>
+      <div class="hero-text-reveal">
+        <p class="text-[var(--color-text-muted)] text-lg mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed">
+          {hero.description}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <a href={hero.ctaPrimary.href} class="btn-primary text-center">{hero.ctaPrimary.label}</a>
+          {hero.ctaSecondary && (
+            <a href={hero.ctaSecondary.href} class="btn-outline text-center flex items-center justify-center gap-2">
+              <span class="phone-pulse inline-block">📞</span>
+              {hero.ctaSecondary.label}
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-text-reveal hidden md:block">
+      <div class="relative">
+        <div class="w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl">
+          <img src={hero.heroImage} alt={config.business.name} class="w-full h-full object-cover" loading="eager"/>
+        </div>
+        <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-[var(--color-primary)]/10 rounded-2xl -z-10"></div>
+        <div class="absolute -top-4 -left-4 w-24 h-24 border-2 border-[var(--color-primary)]/20 rounded-2xl -z-10"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
+    <span class="text-xs text-[var(--color-text-muted)] tracking-widest uppercase">Entdecken</span>
+    <div class="w-px h-8 bg-gradient-to-b from-[var(--color-primary)] to-transparent animate-bounce"></div>
+  </div>
+</section>

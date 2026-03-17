@@ -7,7 +7,12 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run build:widgets && astro build",
+    "build:site": "astro build",
+    "build:widgets": "npm run build:widget:hours && npm run build:widget:booking && npm run build:widget:services",
+    "build:widget:hours": "cross-env WIDGET_NAME=hours vite build --config widget-build/vite.widget.config.ts",
+    "build:widget:booking": "cross-env WIDGET_NAME=booking vite build --config widget-build/vite.widget.config.ts",
+    "build:widget:services": "cross-env WIDGET_NAME=services vite build --config widget-build/vite.widget.config.ts",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -19,6 +24,12 @@
     "astro": "^6.0.5",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "tailwindcss": "^4.2.1"
+    "tailwindcss": "^4.2.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "cross-env": "^10.1.0",
+    "terser": "^5.46.1"
   }
 }

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Widget Embed Demo — The Grand Barber</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    /*
+     * Set --bs-* CSS variables to match your brand.
+     * Widgets read these for colors and fonts.
+     */
+    :root {
+      --bs-primary: #C9A96E;
+      --bs-primary-light: #D4B87A;
+      --bs-primary-dark: #A8894E;
+      --bs-bg: #0A0A0A;
+      --bs-bg-card: #1A1A1A;
+      --bs-bg-card-alt: #2A1F14;
+      --bs-text: #F5E6D0;
+      --bs-text-muted: #9A9088;
+      --bs-border: #3D2E1E;
+      --bs-font-heading: 'Playfair Display', Georgia, serif;
+      --bs-font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    body {
+      font-family: var(--bs-font-body);
+      background: var(--bs-bg);
+      color: var(--bs-text);
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .demo-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: var(--bs-font-heading);
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--bs-text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-family: var(--bs-font-heading);
+      font-size: 1.3rem;
+      color: var(--bs-primary);
+      margin: 48px 0 8px 0;
+      padding-top: 32px;
+      border-top: 1px solid var(--bs-border);
+    }
+
+    .embed-code {
+      background: #111;
+      border: 1px solid var(--bs-border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--bs-text-muted);
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <h1>Widget Embed Demo</h1>
+    <p class="subtitle">
+      Diese Seite zeigt wie die Widgets auf jeder beliebigen HTML-Seite eingebettet werden können.<br>
+      Exakt wie SaniGear: <code>&lt;div&gt;</code> + <code>&lt;script&gt;</code> — fertig.
+    </p>
+
+    <!-- ==================== HOURS WIDGET ==================== -->
+    <h2>1. Öffnungszeiten Widget</h2>
+    <div class="embed-code">
+      &lt;div id="bs-hours" data-config='{"regular":[...]}'&gt;&lt;/div&gt;<br>
+      &lt;script src="/widgets/hours.js"&gt;&lt;/script&gt;
+    </div>
+
+    <div id="bs-hours" data-config='{
+      "title": "Öffnungszeiten",
+      "regular": [
+        {"days": "Dienstag – Freitag", "time": "09:00 – 18:30"},
+        {"days": "Samstag", "time": "09:00 – 16:00"}
+      ],
+      "closedLabel": "Sonntag & Montag: Geschlossen",
+      "note": "An Feiertagen geschlossen"
+    }'></div>
+    <script src="/widgets/hours.js"></script>
+
+    <!-- ==================== SERVICES WIDGET ==================== -->
+    <h2>2. Dienstleistungen Widget</h2>
+    <div class="embed-code">
+      &lt;div id="bs-services" data-config='{"services":[...]}'&gt;&lt;/div&gt;<br>
+      &lt;script src="/widgets/services.js"&gt;&lt;/script&gt;
+    </div>
+
+    <div id="bs-services" data-config='{
+      "title": "Unsere Leistungen",
+      "services": [
+        {"id": "cut", "name": "Herrenschnitt", "description": "Präziser Schnitt mit Beratung und Styling.", "duration": "30 Min", "price": "CHF 55"},
+        {"id": "shave", "name": "Nassrasur", "description": "Klassische Nassrasur mit heissem Tuch.", "duration": "30 Min", "price": "CHF 50"},
+        {"id": "combo", "name": "Schnitt & Rasur Kombi", "description": "Das volle Barbershop-Erlebnis.", "duration": "55 Min", "price": "CHF 90"},
+        {"id": "beard", "name": "Bart-Trimm & Kontur", "description": "Scharfe Konturen und Pflege.", "duration": "20 Min", "price": "CHF 35"}
+      ]
+    }'></div>
+    <script src="/widgets/services.js"></script>
+
+    <!-- ==================== BOOKING WIDGET ==================== -->
+    <h2>3. Buchungs Widget</h2>
+    <div class="embed-code">
+      &lt;div id="bs-booking" data-config='{"services":[...],"barbers":[...]}'&gt;&lt;/div&gt;<br>
+      &lt;script src="/widgets/booking.js"&gt;&lt;/script&gt;
+    </div>
+
+    <div id="bs-booking" data-config='{
+      "services": [
+        {"id": "cut", "name": "Herrenschnitt", "duration": "30 Min", "price": "CHF 55"},
+        {"id": "shave", "name": "Nassrasur", "duration": "30 Min", "price": "CHF 50"},
+        {"id": "combo", "name": "Schnitt & Rasur Kombi", "duration": "55 Min", "price": "CHF 90"}
+      ],
+      "barbers": [
+        {"id": "marco", "name": "Marco"},
+        {"id": "david", "name": "David"},
+        {"id": "any", "name": "Keine Präferenz"}
+      ],
+      "closedDays": [0, 1],
+      "closedLabel": "Montag & Sonntag geschlossen"
+    }'></div>
+    <script src="/widgets/booking.js"></script>
+
+    <h2 style="margin-top: 60px;">Embed-Optionen</h2>
+    <div class="embed-code">
+      &lt;!-- Quick Embed: Widget bringt eigene Styles mit --&gt;<br>
+      &lt;div id="bs-hours"&gt;&lt;/div&gt;<br><br>
+      &lt;!-- Custom Design: Kein CSS injiziert, du stylst selbst --&gt;<br>
+      &lt;div id="bs-hours" data-no-css="true"&gt;&lt;/div&gt;<br><br>
+      &lt;!-- Config via data-Attribut --&gt;<br>
+      &lt;div id="bs-hours" data-config='{"title":"Unsere Zeiten"}'&gt;&lt;/div&gt;<br><br>
+      &lt;!-- Config via globales Objekt --&gt;<br>
+      &lt;script&gt;window.__BS_CONFIG__ = { title: "Global Config" };&lt;/script&gt;
+    </div>
+  </div>
+</body>
+</html>

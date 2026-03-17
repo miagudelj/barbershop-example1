@@ -1,0 +1,41 @@
+---
+import config from '../config';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+
+const { testimonials, sections } = config;
+const s = sections.testimonials;
+---
+
+<section class="py-24 md:py-32 bg-[var(--color-bg-card)] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <SectionHeader
+      subtitle={s.subtitle}
+      title={s.title}
+      titleHighlight={s.titleHighlight}
+      titlePrefix="Was unsere"
+      titleSuffix="sagen"
+    />
+
+    <div class="grid md:grid-cols-3 gap-6 stagger-children">
+      {testimonials.map((t) => (
+        <div class="testimonial-card rounded-2xl p-8 reveal">
+          <div class="flex gap-1 mb-4">
+            {Array.from({ length: t.rating }).map(() => (
+              <span class="text-[var(--color-primary)]">★</span>
+            ))}
+          </div>
+          <p class="text-[var(--color-text-muted)] text-sm leading-relaxed mb-6">{t.text}</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[var(--color-bg-card-alt2)] flex items-center justify-center text-[var(--color-primary)] font-serif font-semibold text-sm">
+              {t.author.charAt(0)}
+            </div>
+            <div>
+              <div class="font-medium text-sm text-[var(--color-text)]">{t.author}</div>
+              <div class="text-xs text-[var(--color-text-muted-light)]">{t.detail}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

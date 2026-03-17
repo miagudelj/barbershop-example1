@@ -1,0 +1,74 @@
+/* Services Widget Default Styles — respects --bs-* CSS variables */
+.bs-services {
+  font-family: var(--bs-font-body, 'Inter', system-ui, sans-serif);
+  color: var(--bs-text, #F5E6D0);
+}
+
+.bs-services__title {
+  font-family: var(--bs-font-heading, 'Playfair Display', Georgia, serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: var(--bs-text, #F5E6D0);
+}
+
+.bs-services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.bs-services__card {
+  background: var(--bs-bg-card, #1A1A1A);
+  border: 1px solid var(--bs-border, rgba(201, 169, 110, 0.08));
+  border-radius: 12px;
+  padding: 20px 24px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.bs-services__card:hover {
+  border-color: var(--bs-primary, #C9A96E);
+  transform: translateY(-4px);
+}
+
+.bs-services__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.bs-services__name {
+  font-family: var(--bs-font-heading, 'Playfair Display', Georgia, serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--bs-text, #F5E6D0);
+}
+
+.bs-services__price {
+  color: var(--bs-primary, #C9A96E);
+  font-weight: 600;
+  font-size: 1rem;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+.bs-services__desc {
+  font-size: 0.85rem;
+  color: var(--bs-text-muted, #9A9088);
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+}
+
+.bs-services__duration {
+  font-size: 0.8rem;
+  color: var(--bs-text-muted, #9A9088);
+  opacity: 0.8;
+}
+
+.bs-services--empty {
+  text-align: center;
+  padding: 40px;
+  color: var(--bs-text-muted, #9A9088);
+}

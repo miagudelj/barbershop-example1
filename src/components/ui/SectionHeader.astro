@@ -1,0 +1,42 @@
+---
+interface Props {
+  subtitle: string;
+  title: string;
+  titleHighlight?: string;
+  /** Text before the highlight word — e.g. "Unsere" for "Unsere Dienstleistungen" */
+  titlePrefix?: string;
+  /** Text after the highlight word — e.g. "sagen" for "Was unsere Kunden sagen" */
+  titleSuffix?: string;
+  description?: string;
+  align?: 'center' | 'left';
+}
+
+const {
+  subtitle,
+  title,
+  titleHighlight,
+  titlePrefix,
+  titleSuffix,
+  description,
+  align = 'center',
+} = Astro.props;
+---
+
+<div class={`${align === 'center' ? 'text-center' : ''} mb-16 reveal`}>
+  <span class="section-subtitle">{subtitle}</span>
+  <h2 class="section-title text-4xl md:text-5xl mt-3 mb-4">
+    {titleHighlight ? (
+      <>
+        {titlePrefix && <>{titlePrefix} </>}
+        <span class="text-[var(--color-primary)] italic">{titleHighlight}</span>
+        {titleSuffix && <> {titleSuffix}</>}
+      </>
+    ) : (
+      title
+    )}
+  </h2>
+  <div class={`brand-divider mb-6 ${align === 'left' ? '!mx-0' : ''}`}></div>
+  {description && (
+    <p class={`text-[var(--color-text-muted)] ${align === 'center' ? 'max-w-xl mx-auto' : ''}`}>{description}</p>
+  )}
+</div>
