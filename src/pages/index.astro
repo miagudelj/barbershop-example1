@@ -90,34 +90,8 @@ import BookingAssistant from '../components/react/BookingAssistant';
 
       <div class="hero-text-reveal hidden md:block">
         <div class="relative">
-          <div class="w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl"
-            style="background: linear-gradient(135deg, var(--color-dark-brown) 0%, var(--color-brown) 50%, var(--color-dark) 100%);">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="text-center">
-                <!-- Barber Pole Icon -->
-                <svg width="60" height="120" viewBox="0 0 60 120" fill="none" class="mx-auto mb-4 opacity-40">
-                  <rect x="10" y="0" width="40" height="120" rx="20" stroke="var(--color-gold)" stroke-width="2" fill="none"/>
-                  <defs>
-                    <clipPath id="pole-clip">
-                      <rect x="11" y="1" width="38" height="118" rx="19"/>
-                    </clipPath>
-                  </defs>
-                  <g clip-path="url(#pole-clip)">
-                    <rect x="10" y="0" width="40" height="120" fill="white" opacity="0.15"/>
-                    <line x1="-10" y1="10" x2="70" y2="-15" stroke="var(--color-red-barber)" stroke-width="8" opacity="0.5"/>
-                    <line x1="-10" y1="30" x2="70" y2="5" stroke="var(--color-blue-barber)" stroke-width="8" opacity="0.5"/>
-                    <line x1="-10" y1="50" x2="70" y2="25" stroke="var(--color-red-barber)" stroke-width="8" opacity="0.5"/>
-                    <line x1="-10" y1="70" x2="70" y2="45" stroke="var(--color-blue-barber)" stroke-width="8" opacity="0.5"/>
-                    <line x1="-10" y1="90" x2="70" y2="65" stroke="var(--color-red-barber)" stroke-width="8" opacity="0.5"/>
-                    <line x1="-10" y1="110" x2="70" y2="85" stroke="var(--color-blue-barber)" stroke-width="8" opacity="0.5"/>
-                    <line x1="-10" y1="130" x2="70" y2="105" stroke="var(--color-red-barber)" stroke-width="8" opacity="0.5"/>
-                  </g>
-                  <rect x="5" y="0" width="50" height="10" rx="5" fill="var(--color-gold)" opacity="0.6"/>
-                  <rect x="5" y="110" width="50" height="10" rx="5" fill="var(--color-gold)" opacity="0.6"/>
-                </svg>
-                <span class="text-[var(--color-warm-gray)]/40 text-sm tracking-widest uppercase">Barbershop</span>
-              </div>
-            </div>
+          <div class="w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl">
+            <img src="/images/hero-barber.jpg" alt="Barber bei der Arbeit" class="w-full h-full object-cover" loading="eager"/>
           </div>
           <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-[var(--color-gold)]/10 rounded-2xl -z-10"></div>
           <div class="absolute -top-4 -left-4 w-24 h-24 border-2 border-[var(--color-gold)]/20 rounded-2xl -z-10"></div>
@@ -138,11 +112,8 @@ import BookingAssistant from '../components/react/BookingAssistant';
       <div class="grid md:grid-cols-2 gap-16 items-center">
         <div class="reveal-left">
           <div class="relative">
-            <div class="w-full aspect-[4/5] rounded-2xl"
-              style="background: linear-gradient(160deg, var(--color-dark-brown), var(--color-brown-light));">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-[var(--color-warm-gray)]/30 text-sm tracking-widest uppercase">Shop Interior</span>
-              </div>
+            <div class="w-full aspect-[4/5] rounded-2xl overflow-hidden">
+              <img src="/images/shop-interior.jpg" alt="The Grand Barber Interieur" class="w-full h-full object-cover" loading="lazy"/>
             </div>
             <div class="absolute -bottom-6 -right-6 bg-[var(--color-gold)] text-[var(--color-black)] p-6 rounded-2xl shadow-lg">
               <div class="text-3xl font-serif font-bold">10+</div>
@@ -332,16 +303,20 @@ import BookingAssistant from '../components/react/BookingAssistant';
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4 stagger-children">
-        {['Classic Fade', 'Nassrasur', 'Beard Styling', 'Pompadour', 'Skin Fade', 'Gentleman Cut'].map((title, i) => (
+        {[
+          { title: 'Classic Fade', img: '/images/gallery-classic-fade.jpg' },
+          { title: 'Nassrasur', img: '/images/gallery-nassrasur.jpg' },
+          { title: 'Beard Styling', img: '/images/gallery-beard-styling.jpg' },
+          { title: 'Pompadour', img: '/images/gallery-pompadour.jpg' },
+          { title: 'Skin Fade', img: '/images/gallery-skin-fade.jpg' },
+          { title: 'Gentleman Cut', img: '/images/gallery-gentleman-cut.jpg' },
+        ].map((item, i) => (
           <div class={`gallery-item relative group reveal ${i === 0 ? 'md:row-span-2' : ''}`}>
-            <div class={`w-full ${i === 0 ? 'h-full min-h-64 md:min-h-full' : 'aspect-square'} rounded-xl`}
-              style={`background: linear-gradient(${135 + i * 20}deg, var(--color-dark-brown), var(--color-brown-light), var(--color-brown));`}>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-[var(--color-warm-gray)]/30 text-xs tracking-widest uppercase">{title}</span>
-              </div>
+            <div class={`w-full ${i === 0 ? 'h-full min-h-64 md:min-h-full' : 'aspect-square'} rounded-xl overflow-hidden`}>
+              <img src={item.img} alt={item.title} class="w-full h-full object-cover" loading="lazy"/>
             </div>
             <div class="gallery-overlay rounded-xl flex items-end p-5">
-              <span class="text-white font-serif text-lg">{title}</span>
+              <span class="text-white font-serif text-lg">{item.title}</span>
             </div>
           </div>
         ))}
@@ -367,12 +342,7 @@ import BookingAssistant from '../components/react/BookingAssistant';
       <div class="grid sm:grid-cols-3 gap-8 stagger-children">
         <div class="team-card text-center reveal">
           <div class="team-img-wrapper w-48 h-48 mx-auto mb-6">
-            <div class="w-full h-full rounded-full"
-              style="background: linear-gradient(135deg, var(--color-dark-brown), var(--color-brown-light));">
-              <div class="w-full h-full flex items-center justify-center">
-                <span class="text-[var(--color-warm-gray)]/30 text-xs tracking-widest uppercase">Foto</span>
-              </div>
-            </div>
+            <img src="/images/team-marco.jpg" alt="Marco Rossi" class="w-full h-full rounded-full object-cover" loading="lazy"/>
           </div>
           <h3 class="font-serif text-xl font-semibold mb-1 text-[var(--color-cream)]">Marco Rossi</h3>
           <p class="text-[var(--color-gold)] text-sm mb-3">Gründer & Master Barber</p>
@@ -384,12 +354,7 @@ import BookingAssistant from '../components/react/BookingAssistant';
 
         <div class="team-card text-center reveal">
           <div class="team-img-wrapper w-48 h-48 mx-auto mb-6">
-            <div class="w-full h-full rounded-full"
-              style="background: linear-gradient(135deg, var(--color-brown-light), var(--color-dark-brown));">
-              <div class="w-full h-full flex items-center justify-center">
-                <span class="text-[var(--color-warm-gray)]/30 text-xs tracking-widest uppercase">Foto</span>
-              </div>
-            </div>
+            <img src="/images/team-david.jpg" alt="David Schneider" class="w-full h-full rounded-full object-cover" loading="lazy"/>
           </div>
           <h3 class="font-serif text-xl font-semibold mb-1 text-[var(--color-cream)]">David Schneider</h3>
           <p class="text-[var(--color-gold)] text-sm mb-3">Fade-Spezialist</p>
@@ -401,12 +366,7 @@ import BookingAssistant from '../components/react/BookingAssistant';
 
         <div class="team-card text-center reveal">
           <div class="team-img-wrapper w-48 h-48 mx-auto mb-6">
-            <div class="w-full h-full rounded-full"
-              style="background: linear-gradient(135deg, var(--color-brown), var(--color-dark-brown));">
-              <div class="w-full h-full flex items-center justify-center">
-                <span class="text-[var(--color-warm-gray)]/30 text-xs tracking-widest uppercase">Foto</span>
-              </div>
-            </div>
+            <img src="/images/team-luca.jpg" alt="Luca Baumann" class="w-full h-full rounded-full object-cover" loading="lazy"/>
           </div>
           <h3 class="font-serif text-xl font-semibold mb-1 text-[var(--color-cream)]">Luca Baumann</h3>
           <p class="text-[var(--color-gold)] text-sm mb-3">Rasur & Bartpflege</p>
